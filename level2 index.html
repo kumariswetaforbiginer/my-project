@@ -1,0 +1,593 @@
+<!-- =========================
+ JOB BOARD WEBSITE
+ Single File Project (HTML + CSS + JS)
+ Save as: index.html
+ ========================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Job Board Portal</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f7fc;
+      color:#222;
+    }
+
+    /* HEADER */
+
+    header{
+      background:linear-gradient(90deg,#0f172a,#2563eb);
+      color:white;
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:17px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#ffd700;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1400&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:22px;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:15px 35px;
+      font-size:18px;
+      border-radius:8px;
+      cursor:pointer;
+      transition:0.3s;
+      text-decoration:none;
+      display:inline-block;
+    }
+
+    .btn:hover{
+      background:#0f172a;
+      transform:scale(1.05);
+    }
+
+    /* SEARCH */
+
+    .search-section{
+      background:white;
+      padding:40px 20px;
+      text-align:center;
+    }
+
+    .search-section h2{
+      margin-bottom:25px;
+      color:#0f172a;
+      font-size:35px;
+    }
+
+    .search-box{
+      max-width:700px;
+      margin:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .search-box input{
+      flex:1;
+      min-width:250px;
+      padding:15px;
+      border:2px solid #2563eb;
+      border-radius:8px;
+      font-size:16px;
+    }
+
+    /* JOB LISTINGS */
+
+    .jobs{
+      padding:60px 30px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:40px;
+      margin-bottom:40px;
+      color:#0f172a;
+    }
+
+    .job-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .job-card{
+      background:white;
+      border-radius:15px;
+      padding:25px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .job-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .job-card h3{
+      color:#2563eb;
+      margin-bottom:10px;
+      font-size:25px;
+    }
+
+    .company{
+      font-weight:bold;
+      margin-bottom:10px;
+      color:#444;
+    }
+
+    .location{
+      margin-bottom:15px;
+      color:#777;
+    }
+
+    .salary{
+      color:green;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+
+    .job-card p{
+      margin-bottom:20px;
+      line-height:1.5;
+    }
+
+    /* APPLY FORM */
+
+    .apply-section{
+      background:#eaf1ff;
+      padding:60px 20px;
+    }
+
+    .form-container{
+      max-width:700px;
+      margin:auto;
+      background:white;
+      padding:40px;
+      border-radius:15px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2{
+      text-align:center;
+      margin-bottom:30px;
+      color:#0f172a;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select{
+      width:100%;
+      padding:14px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:16px;
+    }
+
+    textarea{
+      resize:none;
+      height:120px;
+    }
+
+    /* DASHBOARD */
+
+    .dashboard{
+      padding:60px 20px;
+      background:white;
+    }
+
+    .dashboard-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .dash-card{
+      background:#2563eb;
+      color:white;
+      padding:30px;
+      border-radius:15px;
+      text-align:center;
+      transition:0.3s;
+    }
+
+    .dash-card:hover{
+      background:#0f172a;
+      transform:scale(1.05);
+    }
+
+    .dash-card h3{
+      font-size:35px;
+      margin-bottom:10px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:25px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      nav{
+        margin-top:10px;
+      }
+
+      nav a{
+        display:inline-block;
+        margin:10px;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+    <div class="logo">JOB BOARD</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#jobs">Jobs</a>
+      <a href="#apply">Apply</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Find Your Dream Job</h1>
+      <p>Apply for top companies and grow your career today.</p>
+      <a href="#jobs" class="btn">Explore Jobs</a>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+
+  <section class="search-section">
+    <h2>Search Jobs</h2>
+
+    <div class="search-box">
+      <input type="text" id="searchInput" placeholder="Search by job title...">
+      <button class="btn" onclick="searchJobs()">Search</button>
+    </div>
+  </section>
+
+  <!-- JOB LISTINGS -->
+
+  <section class="jobs" id="jobs">
+
+    <h2 class="section-title">Featured Jobs</h2>
+
+    <div class="job-container" id="jobContainer">
+
+      <!-- CARD 1 -->
+
+      <div class="job-card">
+        <h3>Frontend Developer</h3>
+        <div class="company">Google</div>
+        <div class="location">Bangalore, India</div>
+        <div class="salary">₹8 LPA - ₹15 LPA</div>
+
+        <p>
+          Looking for a skilled frontend developer with
+          HTML, CSS, JavaScript and React knowledge.
+        </p>
+
+        <button class="btn">Apply Now</button>
+      </div>
+
+      <!-- CARD 2 -->
+
+      <div class="job-card">
+        <h3>Backend Developer</h3>
+        <div class="company">Microsoft</div>
+        <div class="location">Hyderabad, India</div>
+        <div class="salary">₹10 LPA - ₹18 LPA</div>
+
+        <p>
+          Node.js developer required with MongoDB
+          and API integration experience.
+        </p>
+
+        <button class="btn">Apply Now</button>
+      </div>
+
+      <!-- CARD 3 -->
+
+      <div class="job-card">
+        <h3>UI/UX Designer</h3>
+        <div class="company">Adobe</div>
+        <div class="location">Remote</div>
+        <div class="salary">₹6 LPA - ₹12 LPA</div>
+
+        <p>
+          Creative designer needed for modern mobile
+          and web interface design.
+        </p>
+
+        <button class="btn">Apply Now</button>
+      </div>
+
+      <!-- CARD 4 -->
+
+      <div class="job-card">
+        <h3>Data Analyst</h3>
+        <div class="company">Amazon</div>
+        <div class="location">Pune, India</div>
+        <div class="salary">₹7 LPA - ₹14 LPA</div>
+
+        <p>
+          Analyze business data and create reports
+          using SQL and Power BI.
+        </p>
+
+        <button class="btn">Apply Now</button>
+      </div>
+
+      <!-- CARD 5 -->
+
+      <div class="job-card">
+        <h3>Java Developer</h3>
+        <div class="company">Infosys</div>
+        <div class="location">Chennai, India</div>
+        <div class="salary">₹5 LPA - ₹11 LPA</div>
+
+        <p>
+          Hiring Java developers with Spring Boot
+          and database knowledge.
+        </p>
+
+        <button class="btn">Apply Now</button>
+      </div>
+
+      <!-- CARD 6 -->
+
+      <div class="job-card">
+        <h3>Cyber Security Expert</h3>
+        <div class="company">TCS</div>
+        <div class="location">Delhi, India</div>
+        <div class="salary">₹12 LPA - ₹20 LPA</div>
+
+        <p>
+          Secure company systems and monitor
+          network vulnerabilities.
+        </p>
+
+        <button class="btn">Apply Now</button>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- APPLY FORM -->
+
+  <section class="apply-section" id="apply">
+
+    <div class="form-container">
+
+      <h2>Apply For Job</h2>
+
+      <form id="jobForm">
+
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email Address</label>
+          <input type="email" required>
+        </div>
+
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" required>
+        </div>
+
+        <div class="form-group">
+          <label>Select Job</label>
+
+          <select required>
+            <option>Frontend Developer</option>
+            <option>Backend Developer</option>
+            <option>UI/UX Designer</option>
+            <option>Data Analyst</option>
+            <option>Java Developer</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Upload Resume</label>
+          <input type="file" required>
+        </div>
+
+        <div class="form-group">
+          <label>Why Should We Hire You?</label>
+          <textarea></textarea>
+        </div>
+
+        <button type="submit" class="btn">
+          Submit Application
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+
+  <section class="dashboard" id="dashboard">
+
+    <h2 class="section-title">Dashboard</h2>
+
+    <div class="dashboard-box">
+
+      <div class="dash-card">
+        <h3>120+</h3>
+        <p>Active Jobs</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>80+</h3>
+        <p>Companies</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>500+</h3>
+        <p>Applications</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>1000+</h3>
+        <p>Users</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      © 2026 Job Board Portal | Designed By Sweta Kumari
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // SEARCH FUNCTION
+
+    function searchJobs(){
+
+      let input =
+      document.getElementById("searchInput")
+      .value.toLowerCase();
+
+      let cards =
+      document.querySelectorAll(".job-card");
+
+      cards.forEach(card => {
+
+        let title =
+        card.querySelector("h3")
+        .innerText.toLowerCase();
+
+        if(title.includes(input)){
+          card.style.display = "block";
+        }
+        else{
+          card.style.display = "none";
+        }
+
+      });
+    }
+
+    // FORM SUBMIT
+
+    document.getElementById("jobForm")
+    .addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      alert("Application Submitted Successfully!");
+
+      this.reset();
+
+    });
+
+  </script>
+
+</body>
+</html>

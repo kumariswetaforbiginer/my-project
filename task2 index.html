@@ -1,0 +1,663 @@
+<!-- =========================================
+ ONLINE QUIZ MAKER PROJECT
+ SAVE FILE AS: index.html
+ ========================================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Online Quiz Maker</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f3f7ff;
+      color:#222;
+    }
+
+    /* HEADER */
+
+    header{
+      background:linear-gradient(90deg,#0f172a,#2563eb);
+      color:white;
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:30px;
+      font-weight:bold;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:17px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#ffd700;
+    }
+
+    /* HERO SECTION */
+
+    .hero{
+      height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1400&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:22px;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:14px 35px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:18px;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#0f172a;
+      transform:scale(1.05);
+    }
+
+    /* FEATURES */
+
+    .features{
+      padding:70px 30px;
+      background:white;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:40px;
+      margin-bottom:50px;
+      color:#0f172a;
+    }
+
+    .feature-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .feature-card{
+      background:#f4f7ff;
+      padding:30px;
+      border-radius:15px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .feature-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .feature-card h3{
+      color:#2563eb;
+      margin-bottom:15px;
+      font-size:25px;
+    }
+
+    /* QUIZ SECTION */
+
+    .quiz-section{
+      padding:70px 20px;
+      background:#eaf1ff;
+    }
+
+    .quiz-container{
+      max-width:700px;
+      margin:auto;
+      background:white;
+      padding:40px;
+      border-radius:15px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .quiz-container h2{
+      margin-bottom:20px;
+      color:#0f172a;
+    }
+
+    #question{
+      font-size:24px;
+      margin-bottom:25px;
+    }
+
+    .option{
+      background:#f3f7ff;
+      border:2px solid #2563eb;
+      padding:15px;
+      border-radius:10px;
+      margin-bottom:15px;
+      cursor:pointer;
+      transition:0.3s;
+      font-size:18px;
+    }
+
+    .option:hover{
+      background:#2563eb;
+      color:white;
+    }
+
+    .selected{
+      background:#2563eb;
+      color:white;
+    }
+
+    .quiz-footer{
+      margin-top:25px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      gap:15px;
+    }
+
+    #scoreBox{
+      font-size:20px;
+      font-weight:bold;
+      color:green;
+    }
+
+    /* CREATE QUIZ */
+
+    .create-quiz{
+      padding:70px 20px;
+      background:white;
+    }
+
+    .form-container{
+      max-width:750px;
+      margin:auto;
+      background:#f4f7ff;
+      padding:40px;
+      border-radius:15px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2{
+      text-align:center;
+      margin-bottom:30px;
+      color:#0f172a;
+    }
+
+    .form-group{
+      margin-bottom:20px;
+    }
+
+    .form-group label{
+      display:block;
+      margin-bottom:8px;
+      font-weight:bold;
+    }
+
+    .form-group input{
+      width:100%;
+      padding:14px;
+      border:1px solid #ccc;
+      border-radius:8px;
+      font-size:16px;
+    }
+
+    /* DASHBOARD */
+
+    .dashboard{
+      padding:70px 20px;
+      background:#eaf1ff;
+    }
+
+    .dashboard-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+      max-width:1100px;
+      margin:auto;
+    }
+
+    .dash-card{
+      background:#2563eb;
+      color:white;
+      padding:35px;
+      border-radius:15px;
+      text-align:center;
+      transition:0.3s;
+    }
+
+    .dash-card:hover{
+      background:#0f172a;
+      transform:scale(1.05);
+    }
+
+    .dash-card h3{
+      font-size:35px;
+      margin-bottom:10px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:25px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      nav{
+        margin-top:10px;
+      }
+
+      nav a{
+        display:inline-block;
+        margin:10px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">QUIZ MAKER</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#quiz">Take Quiz</a>
+      <a href="#create">Create Quiz</a>
+      <a href="#dashboard">Dashboard</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Online Quiz Maker</h1>
+
+      <p>
+        Create quizzes, test knowledge,
+        and improve learning with fun.
+      </p>
+
+      <button class="btn"
+      onclick="document.getElementById('quiz').scrollIntoView()">
+        Start Quiz
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features">
+
+    <h2 class="section-title">Platform Features</h2>
+
+    <div class="feature-box">
+
+      <div class="feature-card">
+        <h3>Create Quiz</h3>
+        <p>
+          Add questions, options,
+          and correct answers easily.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Take Quiz</h3>
+        <p>
+          Users can solve quizzes
+          and improve their skills.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Instant Result</h3>
+        <p>
+          Get score and feedback
+          immediately after submission.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Responsive Design</h3>
+        <p>
+          Works perfectly on
+          mobile, tablet, and desktop.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- QUIZ SECTION -->
+
+  <section class="quiz-section" id="quiz">
+
+    <div class="quiz-container">
+
+      <h2>General Knowledge Quiz</h2>
+
+      <div id="question">
+        Question will appear here
+      </div>
+
+      <div id="options"></div>
+
+      <div class="quiz-footer">
+
+        <button class="btn" onclick="nextQuestion()">
+          Next Question
+        </button>
+
+        <div id="scoreBox">
+          Score: 0
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CREATE QUIZ -->
+
+  <section class="create-quiz" id="create">
+
+    <div class="form-container">
+
+      <h2>Create New Quiz</h2>
+
+      <form id="quizForm">
+
+        <div class="form-group">
+          <label>Question</label>
+          <input type="text"
+          placeholder="Enter question"
+          required>
+        </div>
+
+        <div class="form-group">
+          <label>Option 1</label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Option 2</label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Option 3</label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Option 4</label>
+          <input type="text" required>
+        </div>
+
+        <div class="form-group">
+          <label>Correct Answer</label>
+          <input type="text"
+          placeholder="Write correct answer"
+          required>
+        </div>
+
+        <button type="submit" class="btn">
+          Create Quiz
+        </button>
+
+      </form>
+
+    </div>
+
+  </section>
+
+  <!-- DASHBOARD -->
+
+  <section class="dashboard" id="dashboard">
+
+    <h2 class="section-title">Quiz Dashboard</h2>
+
+    <div class="dashboard-box">
+
+      <div class="dash-card">
+        <h3>50+</h3>
+        <p>Total Quizzes</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>1000+</h3>
+        <p>Users</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>5000+</h3>
+        <p>Quiz Attempts</p>
+      </div>
+
+      <div class="dash-card">
+        <h3>95%</h3>
+        <p>User Satisfaction</p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 Online Quiz Maker | Designed By Sweta Kumari
+    </p>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    const quizData = [
+
+      {
+        question: "Which language is used for web development?",
+        options: ["Python", "HTML", "C++", "Java"],
+        answer: "HTML"
+      },
+
+      {
+        question: "Which company developed JavaScript?",
+        options: ["Microsoft", "Google", "Netscape", "Apple"],
+        answer: "Netscape"
+      },
+
+      {
+        question: "Which tag is used for images in HTML?",
+        options: ["<img>", "<image>", "<pic>", "<src>"],
+        answer: "<img>"
+      },
+
+      {
+        question: "CSS stands for?",
+        options: [
+          "Creative Style Sheets",
+          "Cascading Style Sheets",
+          "Computer Style Sheet",
+          "Colorful Style Sheet"
+        ],
+        answer: "Cascading Style Sheets"
+      }
+
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let selectedAnswer = "";
+
+    const questionEl =
+    document.getElementById("question");
+
+    const optionsEl =
+    document.getElementById("options");
+
+    const scoreBox =
+    document.getElementById("scoreBox");
+
+    function loadQuestion(){
+
+      const currentQuiz =
+      quizData[currentQuestion];
+
+      questionEl.innerText =
+      currentQuiz.question;
+
+      optionsEl.innerHTML = "";
+
+      currentQuiz.options.forEach(option => {
+
+        const div =
+        document.createElement("div");
+
+        div.classList.add("option");
+
+        div.innerText = option;
+
+        div.onclick = () => {
+
+          document
+          .querySelectorAll(".option")
+          .forEach(opt =>
+          opt.classList.remove("selected"));
+
+          div.classList.add("selected");
+
+          selectedAnswer = option;
+        };
+
+        optionsEl.appendChild(div);
+
+      });
+
+    }
+
+    function nextQuestion(){
+
+      if(selectedAnswer === ""){
+        alert("Please select an answer!");
+        return;
+      }
+
+      if(selectedAnswer ===
+      quizData[currentQuestion].answer){
+
+        score++;
+      }
+
+      scoreBox.innerText =
+      "Score: " + score;
+
+      selectedAnswer = "";
+
+      currentQuestion++;
+
+      if(currentQuestion < quizData.length){
+
+        loadQuestion();
+
+      } else {
+
+        questionEl.innerHTML =
+        "Quiz Completed 🎉";
+
+        optionsEl.innerHTML =
+        "<h2>Your Final Score is "
+        + score + " / "
+        + quizData.length + "</h2>";
+
+      }
+
+    }
+
+    loadQuestion();
+
+    // FORM SUBMIT
+
+    document
+    .getElementById("quizForm")
+    .addEventListener("submit",
+    function(e){
+
+      e.preventDefault();
+
+      alert("New Quiz Created Successfully!");
+
+      this.reset();
+
+    });
+
+  </script>
+
+</body>
+</html>

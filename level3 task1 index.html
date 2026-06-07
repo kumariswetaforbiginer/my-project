@@ -1,0 +1,721 @@
+<!-- =========================================
+ E-COMMERCE WEBSITE PROJECT
+ SAVE FILE AS: index.html
+ ========================================= -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>E-Commerce Website</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#f4f7fc;
+      color:#222;
+    }
+
+    /* HEADER */
+
+    header{
+      background:linear-gradient(90deg,#0f172a,#2563eb);
+      color:white;
+      padding:20px 50px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      flex-wrap:wrap;
+      position:sticky;
+      top:0;
+      z-index:100;
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:bold;
+    }
+
+    nav a{
+      color:white;
+      text-decoration:none;
+      margin-left:20px;
+      font-size:17px;
+      transition:0.3s;
+    }
+
+    nav a:hover{
+      color:#ffd700;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:90vh;
+      background:
+      linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.6)),
+      url('https://images.unsplash.com/photo-1472851294608-062f824d29cc?q=80&w=1400&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      color:white;
+      padding:20px;
+    }
+
+    .hero-content h1{
+      font-size:60px;
+      margin-bottom:20px;
+    }
+
+    .hero-content p{
+      font-size:22px;
+      margin-bottom:30px;
+    }
+
+    .btn{
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:15px 35px;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:18px;
+      transition:0.3s;
+    }
+
+    .btn:hover{
+      background:#0f172a;
+      transform:scale(1.05);
+    }
+
+    /* SEARCH */
+
+    .search-section{
+      background:white;
+      padding:40px 20px;
+      text-align:center;
+    }
+
+    .search-section h2{
+      font-size:38px;
+      margin-bottom:25px;
+      color:#0f172a;
+    }
+
+    .search-box{
+      max-width:700px;
+      margin:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+
+    .search-box input{
+      flex:1;
+      min-width:250px;
+      padding:15px;
+      border:2px solid #2563eb;
+      border-radius:8px;
+      font-size:16px;
+    }
+
+    /* PRODUCTS */
+
+    .products{
+      padding:70px 30px;
+    }
+
+    .section-title{
+      text-align:center;
+      font-size:40px;
+      margin-bottom:50px;
+      color:#0f172a;
+    }
+
+    .product-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:30px;
+    }
+
+    .product-card{
+      background:white;
+      border-radius:15px;
+      overflow:hidden;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .product-card:hover{
+      transform:translateY(-10px);
+    }
+
+    .product-card img{
+      width:100%;
+      height:250px;
+      object-fit:cover;
+    }
+
+    .product-info{
+      padding:20px;
+    }
+
+    .product-info h3{
+      margin-bottom:10px;
+      color:#2563eb;
+      font-size:25px;
+    }
+
+    .price{
+      color:green;
+      font-size:22px;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+
+    .product-info p{
+      margin-bottom:20px;
+      line-height:1.5;
+    }
+
+    /* CART */
+
+    .cart-section{
+      background:#eaf1ff;
+      padding:70px 20px;
+    }
+
+    .cart-container{
+      max-width:900px;
+      margin:auto;
+      background:white;
+      padding:40px;
+      border-radius:15px;
+      box-shadow:0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    .cart-container h2{
+      text-align:center;
+      margin-bottom:30px;
+      color:#0f172a;
+    }
+
+    #cartItems{
+      margin-bottom:30px;
+    }
+
+    .cart-item{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:15px;
+      border-bottom:1px solid #ddd;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .total{
+      text-align:right;
+      font-size:25px;
+      font-weight:bold;
+      color:green;
+      margin-bottom:20px;
+    }
+
+    /* FEATURES */
+
+    .features{
+      padding:70px 20px;
+      background:white;
+    }
+
+    .feature-box{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:25px;
+    }
+
+    .feature-card{
+      background:#f4f7ff;
+      padding:30px;
+      border-radius:15px;
+      text-align:center;
+      box-shadow:0 5px 15px rgba(0,0,0,0.1);
+      transition:0.3s;
+    }
+
+    .feature-card:hover{
+      transform:scale(1.05);
+    }
+
+    .feature-card h3{
+      color:#2563eb;
+      margin-bottom:15px;
+      font-size:25px;
+    }
+
+    /* FOOTER */
+
+    footer{
+      background:#0f172a;
+      color:white;
+      text-align:center;
+      padding:25px;
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:768px){
+
+      .hero-content h1{
+        font-size:40px;
+      }
+
+      nav{
+        margin-top:10px;
+      }
+
+      nav a{
+        display:inline-block;
+        margin:10px;
+      }
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="logo">SHOPMART</div>
+
+    <nav>
+      <a href="#">Home</a>
+      <a href="#products">Products</a>
+      <a href="#cart">Cart</a>
+      <a href="#features">Features</a>
+    </nav>
+
+  </header>
+
+  <!-- HERO -->
+
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <h1>Welcome To ShopMart</h1>
+
+      <p>
+        Best E-Commerce Website For Shopping
+        Amazing Products Online.
+      </p>
+
+      <button class="btn"
+      onclick="document.getElementById('products').scrollIntoView()">
+        Shop Now
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- SEARCH -->
+
+  <section class="search-section">
+
+    <h2>Search Products</h2>
+
+    <div class="search-box">
+
+      <input type="text"
+      id="searchInput"
+      placeholder="Search product name...">
+
+      <button class="btn"
+      onclick="searchProducts()">
+        Search
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS -->
+
+  <section class="products" id="products">
+
+    <h2 class="section-title">Featured Products</h2>
+
+    <div class="product-container" id="productContainer">
+
+      <!-- PRODUCT 1 -->
+
+      <div class="product-card">
+
+        <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="product-info">
+
+          <h3>iPhone 15</h3>
+
+          <div class="price">₹79,999</div>
+
+          <p>
+            Latest Apple smartphone with powerful
+            performance and premium design.
+          </p>
+
+          <button class="btn"
+          onclick="addToCart('iPhone 15',79999)">
+            Add To Cart
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 2 -->
+
+      <div class="product-card">
+
+        <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="product-info">
+
+          <h3>Nike Shoes</h3>
+
+          <div class="price">₹4,999</div>
+
+          <p>
+            Stylish and comfortable running shoes
+            for everyday use.
+          </p>
+
+          <button class="btn"
+          onclick="addToCart('Nike Shoes',4999)">
+            Add To Cart
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 3 -->
+
+      <div class="product-card">
+
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="product-info">
+
+          <h3>Smart Watch</h3>
+
+          <div class="price">₹6,999</div>
+
+          <p>
+            Track fitness, calls, and notifications
+            with smart features.
+          </p>
+
+          <button class="btn"
+          onclick="addToCart('Smart Watch',6999)">
+            Add To Cart
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 4 -->
+
+      <div class="product-card">
+
+        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="product-info">
+
+          <h3>Headphones</h3>
+
+          <div class="price">₹2,499</div>
+
+          <p>
+            Premium sound quality headphones
+            with noise cancellation.
+          </p>
+
+          <button class="btn"
+          onclick="addToCart('Headphones',2499)">
+            Add To Cart
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 5 -->
+
+      <div class="product-card">
+
+        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="product-info">
+
+          <h3>Laptop</h3>
+
+          <div class="price">₹55,000</div>
+
+          <p>
+            High performance laptop for coding,
+            gaming and office work.
+          </p>
+
+          <button class="btn"
+          onclick="addToCart('Laptop',55000)">
+            Add To Cart
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- PRODUCT 6 -->
+
+      <div class="product-card">
+
+        <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="product-info">
+
+          <h3>Gaming Mouse</h3>
+
+          <div class="price">₹1,999</div>
+
+          <p>
+            RGB gaming mouse with fast response
+            and smooth performance.
+          </p>
+
+          <button class="btn"
+          onclick="addToCart('Gaming Mouse',1999)">
+            Add To Cart
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CART -->
+
+  <section class="cart-section" id="cart">
+
+    <div class="cart-container">
+
+      <h2>Shopping Cart</h2>
+
+      <div id="cartItems">
+
+        <p>No items added yet.</p>
+
+      </div>
+
+      <div class="total" id="totalPrice">
+        Total: ₹0
+      </div>
+
+      <button class="btn" onclick="checkout()">
+        Proceed To Checkout
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FEATURES -->
+
+  <section class="features" id="features">
+
+    <h2 class="section-title">Why Choose Us?</h2>
+
+    <div class="feature-box">
+
+      <div class="feature-card">
+        <h3>Fast Delivery</h3>
+        <p>
+          Quick and safe product delivery
+          across India.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Secure Payment</h3>
+        <p>
+          100% secure online payment
+          gateway system.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>Best Quality</h3>
+        <p>
+          Premium quality products
+          with trusted brands.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <h3>24/7 Support</h3>
+        <p>
+          Customer support available
+          anytime for users.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <p>
+      © 2026 ShopMart E-Commerce Website |
+      Designed By Sweta Kumari
+    </p>
+
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    let cart = [];
+    let total = 0;
+
+    // ADD TO CART
+
+    function addToCart(product, price){
+
+      cart.push({product, price});
+
+      total += price;
+
+      displayCart();
+
+      alert(product + " added to cart!");
+
+    }
+
+    // DISPLAY CART
+
+    function displayCart(){
+
+      const cartItems =
+      document.getElementById("cartItems");
+
+      const totalPrice =
+      document.getElementById("totalPrice");
+
+      cartItems.innerHTML = "";
+
+      cart.forEach(item => {
+
+        let div =
+        document.createElement("div");
+
+        div.classList.add("cart-item");
+
+        div.innerHTML = `
+          <span>${item.product}</span>
+          <span>₹${item.price}</span>
+        `;
+
+        cartItems.appendChild(div);
+
+      });
+
+      totalPrice.innerText =
+      "Total: ₹" + total;
+
+    }
+
+    // CHECKOUT
+
+    function checkout(){
+
+      if(cart.length === 0){
+
+        alert("Your cart is empty!");
+
+      } else {
+
+        alert(
+          "Order placed successfully! 🎉"
+        );
+
+        cart = [];
+        total = 0;
+
+        displayCart();
+
+      }
+
+    }
+
+    // SEARCH PRODUCTS
+
+    function searchProducts(){
+
+      let input =
+      document.getElementById("searchInput")
+      .value.toLowerCase();
+
+      let cards =
+      document.querySelectorAll(".product-card");
+
+      cards.forEach(card => {
+
+        let title =
+        card.querySelector("h3")
+        .innerText.toLowerCase();
+
+        if(title.includes(input)){
+
+          card.style.display = "block";
+
+        } else {
+
+          card.style.display = "none";
+
+        }
+
+      });
+
+    }
+
+  </script>
+
+</body>
+</html>
